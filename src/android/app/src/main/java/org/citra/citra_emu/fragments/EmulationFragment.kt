@@ -199,7 +199,6 @@ class EmulationFragment :
             return
         }
         binding.surfaceEmulation.holder.addCallback(this)
-        binding.surfaceEmulation.setZOrderOnTop(true)
         binding.doneControlConfig.setOnClickListener {
             binding.doneControlConfig.visibility = View.GONE
             binding.surfaceInputOverlay.setIsInEditMode(false)
