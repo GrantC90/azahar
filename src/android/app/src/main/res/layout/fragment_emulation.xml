@@ -23,6 +23,16 @@
             android:focusable="false"
             android:focusableInTouchMode="false" />
 
+        <ImageView
+            android:id="@+id/layout_overlay_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/layout_overlay"
+            android:scaleType="fitXY"
+            android:clickable="false"
+            android:focusable="false"
+            android:importantForAccessibility="no" />
+
         <!-- This is the onscreen input overlay -->
         <org.citra.citra_emu.overlay.InputOverlay
             android:id="@+id/surface_input_overlay"
