@@ -255,13 +255,6 @@ class SecondaryDisplayPresentation(
         }
 
         val container = FrameLayout(context)
-        container.addView(
-            surfaceView,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
 
         val overlayImage = ImageView(context).apply {
             setImageResource(R.drawable.layout_overlay_bottom)
@@ -278,7 +271,14 @@ class SecondaryDisplayPresentation(
             )
         )
 
+        // Game surface: exactly the size of the screen opening in your bezel (pixels)
+        container.addView(
+            surfaceView,
+            FrameLayout.LayoutParams(1240, 930, Gravity.TOP or Gravity.CENTER_HORIZONTAL)
+        )
+
         setContentView(container)
+
 
     }
 
