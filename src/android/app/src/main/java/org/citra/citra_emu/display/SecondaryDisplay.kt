@@ -15,6 +15,7 @@ import android.hardware.display.VirtualDisplay
 import android.os.Build
 import android.os.Bundle
 import android.view.Display
+import android.view.Gravity
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
