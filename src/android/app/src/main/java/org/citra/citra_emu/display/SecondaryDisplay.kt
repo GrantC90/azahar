@@ -4,6 +4,10 @@
 
 package org.citra.citra_emu.display
 
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ImageView
+import org.citra.citra_emu.R
 import android.app.Presentation
 import android.content.Context
 import android.hardware.display.DisplayManager
@@ -249,7 +253,32 @@ class SecondaryDisplayPresentation(
             true
         }
 
-        setContentView(surfaceView) // Set SurfaceView as content
+        val container = FrameLayout(context)
+        container.addView(
+            surfaceView,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        val overlayImage = ImageView(context).apply {
+            setImageResource(R.drawable.layout_overlay_bottom)
+            scaleType = ImageView.ScaleType.FIT_XY
+            isClickable = false
+            isFocusable = false
+            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
+        }
+        container.addView(
+            overlayImage,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        setContentView(container)
+
     }
 
     // Publicly accessible method to get the SurfaceHolder
