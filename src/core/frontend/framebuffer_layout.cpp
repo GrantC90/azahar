@@ -338,6 +338,17 @@ FramebufferLayout SeparateWindowsLayout(u32 width, u32 height, bool is_secondary
     return SingleFrameLayout(width, height, is_secondary, upright);
 }
 
+// Moves the bottom screen to the top edge of the window (landscape only)
+static FramebufferLayout AlignBottomScreenToTop(FramebufferLayout layout) {
+    if (!layout.is_rotated) {
+        return layout; // upright mode: rectangles are rotated, skip
+    }
+    const u32 shift = layout.bottom_screen.top;
+    layout.bottom_screen.top -= shift;
+    layout.bottom_screen.bottom -= shift;
+    return layout;
+}
+
 FramebufferLayout AndroidSecondaryLayout(u32 width, u32 height) {
     const Settings::SecondaryDisplayLayout layout =
         Settings::values.secondary_display_layout.GetValue();
@@ -346,7 +357,8 @@ FramebufferLayout AndroidSecondaryLayout(u32 width, u32 height) {
         return SingleFrameLayout(width, height, false, Settings::values.upright_screen.GetValue());
 
     case Settings::SecondaryDisplayLayout::BottomScreenOnly:
-        return SingleFrameLayout(width, height, true, Settings::values.upright_screen.GetValue());
+        return AlignBottomScreenToTop(
+            SingleFrameLayout(width, height, true, Settings::values.upright_screen.GetValue()));
     case Settings::SecondaryDisplayLayout::SideBySide:
         return LargeFrameLayout(width, height, false, Settings::values.upright_screen.GetValue(),
                                 1.0f, Settings::SmallScreenPosition::MiddleRight);
