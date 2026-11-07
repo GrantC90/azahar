@@ -25,8 +25,8 @@
 
         <SurfaceView
             android:id="@+id/surface_emulation"
-            android:layout_width="1500px"
-            android:layout_height="900px"
+            android:layout_width="1268px"
+            android:layout_height="761px"
             android:layout_gravity="center"
             android:defaultFocusHighlightEnabled="false"
             android:focusable="false"
